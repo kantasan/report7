@@ -12,15 +12,15 @@ import java.awt.Container;
 class main extends JFrame implements ActionListener {
     public JPanel p = new JPanel();
 
-    public int rrr;
-    public Thread bbb;
+    public int first;
+    public Thread thread;
     public ImageIcon icon1;
     public JLabel label1;
     public JLabel label2;
     public long start;
     public long end;
-    public int ddd;
-    public boolean aaa;
+    public int count;
+    public boolean ahead;
 
 
     public static void main(String args[]) {
@@ -31,7 +31,7 @@ class main extends JFrame implements ActionListener {
     }
 
 
-    public class jjj extends Thread {
+    public class time extends Thread {
         public void run() {
 
 
@@ -40,10 +40,10 @@ class main extends JFrame implements ActionListener {
                     Thread.sleep(ran);
                 } catch (InterruptedException t) {
                 }
-            if(aaa) {
-                if (ddd == 0) {
+            if(ahead) {
+                if (count == 0) {
                     start = System.currentTimeMillis();
-                    ddd++;
+                    count++;
                 }
                 icon1 = new ImageIcon("/Users/e165701/IdeaProjects/report7/src/main/java/02F012A0003.png");
                 label1.setIcon(icon1);
@@ -53,26 +53,26 @@ class main extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (rrr == 0) {
-            bbb.start();
-            rrr++;
+        if (first == 0) {
+            thread.start();
+            first++;
         }else if(start == 0){
             label2.setText("結果: 失敗");
-            aaa = false;
-        } else if (rrr == 1) {
+            ahead = false;
+        } else if (first == 1) {
             end = System.currentTimeMillis();
             label2.setText("結果: " + (end - start) + "ms");
-            rrr++;
+            first++;
         }
     }
 
 
     main(String title) {
-        jjj www = new jjj();
-        bbb = new Thread(www);
-        rrr = 0;
-        ddd = 0;
-        aaa = true;
+        time get = new time();
+        thread = new Thread(get);
+        first = 0;
+        count = 0;
+        ahead = true;
         setTitle(title);
         setBounds(200, 100, 500, 500);
 
