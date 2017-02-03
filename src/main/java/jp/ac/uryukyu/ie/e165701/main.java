@@ -9,13 +9,19 @@ import java.util.*;
 import java.awt.Container;
 
 
-class main extends JFrame implements ActionListener{
+class main extends JFrame implements ActionListener {
     public JPanel p = new JPanel();
 
-    public boolean rrr;
+    public int rrr;
     public Thread bbb;
     public ImageIcon icon1;
     public JLabel label1;
+    public JLabel label2;
+    public long start;
+    public long end;
+    public int ddd;
+    public boolean aaa;
+
 
     public static void main(String args[]) {
         main frame = new main("反射神経テスト");
@@ -24,49 +30,65 @@ class main extends JFrame implements ActionListener{
 
     }
 
+
+    public class jjj extends Thread {
+        public void run() {
+
+
+                int ran = (int) (Math.random() * 10000);
+                try {
+                    Thread.sleep(ran);
+                } catch (InterruptedException t) {
+                }
+            if(aaa) {
+                if (ddd == 0) {
+                    start = System.currentTimeMillis();
+                    ddd++;
+                }
+                icon1 = new ImageIcon("/Users/e165701/IdeaProjects/report7/src/main/java/02F012A0003.png");
+                label1.setIcon(icon1);
+                repaint();
+            }
+        }
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        if (rrr == 0) {
+            bbb.start();
+            rrr++;
+        }else if(start == 0){
+            label2.setText("結果: 失敗");
+            aaa = false;
+        } else if (rrr == 1) {
+            end = System.currentTimeMillis();
+            label2.setText("結果: " + (end - start) + "ms");
+            rrr++;
+        }
+    }
+
+
     main(String title) {
         jjj www = new jjj();
         bbb = new Thread(www);
-        rrr = true;
+        rrr = 0;
+        ddd = 0;
+        aaa = true;
         setTitle(title);
-        setBounds(100, 100, 300, 250);
+        setBounds(200, 100, 500, 500);
 
         JButton button1 = new JButton("start");
         button1.addActionListener(this);
 
         label1 = new JLabel("");
 
+        label2 = new JLabel("");
+
         p.add(button1);
         p.add(label1);
+        p.add(label2);
 
         Container contentPane = getContentPane();
         contentPane.add(p, BorderLayout.CENTER);
-
-    }
-
-    public void actionPerformed(ActionEvent e) {
-        if(rrr){
-            bbb.start();
-            rrr = false;
-
-        }
-    }
-
-    public class jjj extends Thread {
-        public void run() {
-
-
-            int ran = (int) (Math.random() * 10000);
-            try {
-                Thread.sleep(ran);
-            } catch (InterruptedException t) {}
-
-            icon1 = new ImageIcon("/Users/e165701/IdeaProjects/report7/src/main/java/02F012A0003.png");
-            label1.setIcon(icon1);
-            long start = System.currentTimeMillis();
-            repaint();
-
-        }
     }
 }
 
