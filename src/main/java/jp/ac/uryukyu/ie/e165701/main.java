@@ -45,8 +45,11 @@ class main extends JFrame implements ActionListener {
                     start = System.currentTimeMillis();
                     count++;
                 }
-                icon1 = new ImageIcon("/Users/e165701/IdeaProjects/report7/src/main/java/02F012A0003.png");
+                icon1 = new ImageIcon("/Users/e165701/IdeaProjects/report7/src/main/java/02F012A0003.jpeg");
                 label1.setIcon(icon1);
+                p.setLayout(null);
+                label1.setBounds(100,100,283,283);
+
                 repaint();
             }
         }
@@ -62,6 +65,7 @@ class main extends JFrame implements ActionListener {
         } else if (first == 1) {
             end = System.currentTimeMillis();
             label2.setText("結果: " + (end - start) + "ms");
+            label2.setBounds(200,50,100,50);
             first++;
         }
     }
@@ -77,7 +81,9 @@ class main extends JFrame implements ActionListener {
         setBounds(200, 100, 500, 500);
 
         JButton button1 = new JButton("start");
+        button1.setBounds(100,100,80,30);
         button1.addActionListener(this);
+
 
         label1 = new JLabel("");
 
