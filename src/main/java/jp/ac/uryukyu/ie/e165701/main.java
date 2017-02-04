@@ -27,10 +27,10 @@ class main extends JFrame implements ActionListener {
         main frame = new main("反射神経テスト");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-
     }
 
-
+    /*画像の設定
+    画像を一定時間待機させてから表示させる*/
     public class time extends Thread {
         public void run() {
 
@@ -55,6 +55,8 @@ class main extends JFrame implements ActionListener {
         }
     }
 
+    /*ボタンを押した時の処理
+    * 画像が表示される前にボタンを押すと「失敗」と表示される*/
     public void actionPerformed(ActionEvent e) {
         if (first == 0) {
             thread.start();
@@ -70,7 +72,7 @@ class main extends JFrame implements ActionListener {
         }
     }
 
-
+    /*フレームとボタンの設定*/
     main(String title) {
         time get = new time();
         thread = new Thread(get);
@@ -84,7 +86,6 @@ class main extends JFrame implements ActionListener {
         button1.setBounds(100,100,80,30);
         button1.addActionListener(this);
 
-
         label1 = new JLabel("");
 
         label2 = new JLabel("");
@@ -97,9 +98,3 @@ class main extends JFrame implements ActionListener {
         contentPane.add(p, BorderLayout.CENTER);
     }
 }
-
-
-
-
-
-
