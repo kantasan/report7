@@ -2,14 +2,13 @@ package jp.ac.uryukyu.ie.e165701;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
-import java.awt.Container;
 
-
-class main extends JFrame implements ActionListener {
+/**
+ * Created by e165701 on 2017/02/05.
+ */
+public class Reflection extends JFrame implements ActionListener {
     public JPanel p = new JPanel();
 
     public int first;
@@ -23,29 +22,24 @@ class main extends JFrame implements ActionListener {
     public boolean ahead;
 
 
-    public static void main(String args[]) {
-        main frame = new main("反射神経テスト");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-    }
-
     /*画像の設定
-    画像を一定時間待機させてから表示させる*/
+画像を一定時間待機させてから表示させる*/
     public class time extends Thread {
         public void run() {
 
 
-                int ran = (int) (Math.random() * 10000);
-                try {
-                    Thread.sleep(ran);
-                } catch (InterruptedException t) {
-                }
+            int ran = (int) (Math.random() * 10000);
+            try {
+                Thread.sleep(ran);
+            } catch (InterruptedException t) {
+            }
             if(ahead) {
                 if (count == 0) {
                     start = System.currentTimeMillis();
                     count++;
                 }
-                icon1 = new ImageIcon("/Users/e165701/IdeaProjects/report7/src/main/java/02F012A0003.jpeg");
+                ClassLoader cla = this.getClass().getClassLoader();
+                icon1 = new ImageIcon(cla.getResource("02F012A0003.jpeg"));
                 label1.setIcon(icon1);
                 p.setLayout(null);
                 label1.setBounds(100,100,283,283);
@@ -73,8 +67,8 @@ class main extends JFrame implements ActionListener {
     }
 
     /*フレームとボタンの設定*/
-    main(String title) {
-        time get = new time();
+    Reflection(String title) {
+        Reflection.time get = new Reflection.time();
         thread = new Thread(get);
         first = 0;
         count = 0;
